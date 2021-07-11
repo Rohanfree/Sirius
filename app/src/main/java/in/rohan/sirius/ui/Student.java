@@ -1,6 +1,6 @@
 package in.rohan.sirius.ui;
 
-public class Student {
+public class Student implements Comparable<Student>{
     public int getStarCount() {
         return starCount;
     }
@@ -29,5 +29,11 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return Integer.valueOf(this.id).compareTo(Integer.valueOf(o.id));
+
     }
 }
