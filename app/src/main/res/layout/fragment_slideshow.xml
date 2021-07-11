@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".ui.slideshow.SlideshowFragment">
+
+    <LinearLayout
+        android:layout_width="397dp"
+        android:layout_height="114dp"
+        android:background="#3CE32727"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="189dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="Upload Student Details Here"
+            android:textIsSelectable="false"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/uploadButton"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#007B1FA2"
+            android:clickable="true"
+            android:src="@drawable/folder__1_" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="right|end"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="259dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#005C3E3E"
+            android:clickable="true"
+            android:longClickable="true"
+            android:paddingRight="30dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/save" />
+
+        <ImageButton
+            android:id="@+id/reloadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#005C3E3E"
+            android:src="@drawable/refresh" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="526dp"
+        android:layout_marginBottom="50dp"></ListView>
+
+</LinearLayout>
