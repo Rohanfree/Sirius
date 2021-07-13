@@ -27,6 +27,14 @@
             android:textStyle="bold" />
 
         <ImageButton
+            android:id="@+id/downloadButton"
+            android:layout_width="42dp"
+            android:layout_height="63dp"
+            android:layout_weight="1"
+            android:background="#00B64545"
+            android:src="@drawable/download_button" />
+
+        <ImageButton
             android:id="@+id/uploadButton"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
