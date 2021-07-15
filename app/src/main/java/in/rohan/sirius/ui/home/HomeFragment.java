@@ -44,8 +44,9 @@ public class HomeFragment extends Fragment {
         calenderView = root.findViewById(R.id.calendarView);
         homeStatus = root.findViewById(R.id.homeStatusTextBox);
         MainActivity mainActivity=((MainActivity) getContext());
-        mainActivity.populateStudentsWithStar();
         initializeDate();
+        mainActivity.populateStudentsWithStar();
+
         initialize();
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

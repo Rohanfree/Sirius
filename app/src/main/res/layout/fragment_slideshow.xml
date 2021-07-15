@@ -75,7 +75,41 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="526dp"
-        android:layout_marginBottom="50dp"></ListView>
+        android:layout_height="433dp"
+        android:layout_marginBottom="50dp">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="#388E3C"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextNewStudentID"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="id"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextNewStudentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/addNewStudentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+" />
+    </LinearLayout>
 
 </LinearLayout>

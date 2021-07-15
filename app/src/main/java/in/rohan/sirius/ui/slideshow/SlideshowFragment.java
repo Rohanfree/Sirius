@@ -1,15 +1,12 @@
 package in.rohan.sirius.ui.slideshow;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
-import android.provider.DocumentsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -30,17 +27,15 @@ import java.io.OutputStream;
 
 import in.rohan.sirius.MainActivity;
 import in.rohan.sirius.R;
-
-
 import in.rohan.sirius.databinding.FragmentSlideshowBinding;
 import in.rohan.sirius.ui.CustomListView.MyListAdapter;
+import in.rohan.sirius.ui.CustomListView.StarListAdapter;
+import in.rohan.sirius.ui.Student;
 
 public class SlideshowFragment extends Fragment {
 
     private SlideshowViewModel slideshowViewModel;
     private FragmentSlideshowBinding binding;
-
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,20 +47,20 @@ public class SlideshowFragment extends Fragment {
         View root = binding.getRoot();
 
 
-        MyListAdapter adapter=new MyListAdapter(getActivity(), ((MainActivity) getContext()).getStudents());
-        ListView list=(ListView) root.findViewById(R.id.list);
+        MyListAdapter adapter = new MyListAdapter(getActivity(), ((MainActivity) getContext()).getStudents());
+        ListView list = (ListView) root.findViewById(R.id.list);
         list.setAdapter(adapter);
-        ImageButton imgButtonSave =root.findViewById(R.id.reloadButton);
-        ImageButton uploadButton=root.findViewById(R.id.uploadButton);
+        ImageButton imgButtonSave = root.findViewById(R.id.reloadButton);
+        ImageButton uploadButton = root.findViewById(R.id.uploadButton);
 
         ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 new ActivityResultCallback<Uri>() {
                     @Override
                     public void onActivityResult(Uri uri) {
-                        File filed=new File(getContext().getFilesDir(),"StudentFile.xls");
+                        File filed = new File(getContext().getFilesDir(), ((MainActivity) getContext()).className+"StudentFile.xls");
                         try {
-                            InputStream fin=getContext().getContentResolver().openInputStream(uri);
-                            FileOutputStream fout=new FileOutputStream(filed);
+                            InputStream fin = getContext().getContentResolver().openInputStream(uri);
+                            FileOutputStream fout = new FileOutputStream(filed);
                             byte[] buf = new byte[1024];
                             int len;
                             while ((len = fin.read(buf)) > 0) {
@@ -88,17 +83,17 @@ public class SlideshowFragment extends Fragment {
             }
         });
 
-        ImageButton downloadButton=root.findViewById(R.id.downloadButton);
+        ImageButton downloadButton = root.findViewById(R.id.downloadButton);
 
         ActivityResultLauncher<String> cContent = registerForActivityResult(new ActivityResultContracts.CreateDocument(),
                 new ActivityResultCallback<Uri>() {
                     @Override
                     public void onActivityResult(Uri uri) {
 
-                        File files=new File(getContext().getFilesDir(),"StudentFile.xls");
+                        File files = new File(getContext().getFilesDir(), ((MainActivity) getContext()).className+"StudentDetails.xls");
                         try {
-                            FileInputStream fin=new FileInputStream(files);
-                            OutputStream foot=getContext().getContentResolver().openOutputStream(uri);
+                            FileInputStream fin = new FileInputStream(files);
+                            OutputStream foot = getContext().getContentResolver().openOutputStream(uri);
                             byte[] buf = new byte[1024];
                             int len;
 
@@ -118,16 +113,36 @@ public class SlideshowFragment extends Fragment {
         downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cContent.launch("StudentDetails.xls");
+                cContent.launch(((MainActivity) getContext()).className+"StudentDetails.xls");
             }
         });
         imgButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getContext()).populateStudents();
-                MyListAdapter adapter=new MyListAdapter(getActivity(), ((MainActivity) getContext()).getStudents());
+                MyListAdapter adapter = new MyListAdapter(getActivity(), ((MainActivity) getContext()).getStudents());
                 list.setAdapter(adapter);
             }
+        });
+        Button addNewStudntButton=root.findViewById(R.id.addNewStudentsButton);
+        EditText studentID=root.findViewById(R.id.editTextNewStudentID);
+    EditText studentName=root.findViewById(R.id.editTextNewStudentName);
+        addNewStudntButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!studentName.getText().toString().equals("") && ((MainActivity) getContext()).getStudentWithID(studentID.getText().toString()) == null){
+                    Student student=new Student();
+                    student.setName(studentName.getText().toString());
+                    student.setId(Integer.valueOf(studentID.getText().toString()));
+                    MyListAdapter dataset= (MyListAdapter) list.getAdapter();
+                    dataset.add(student);
+                    dataset.notifyDataSetChanged();
+                    studentID.setText("");
+                    studentName.setText("");
+
+                }
+
+             }
         });
 
 

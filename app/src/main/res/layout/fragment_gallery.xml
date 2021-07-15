@@ -44,6 +44,7 @@
                 android:background="#0097A7"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="Enter id"
                 android:inputType="number"
                 android:textColor="#F4EEEE" />
         </LinearLayout>
@@ -70,6 +71,7 @@
                 android:background="#0097A7"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="Enter star count"
                 android:inputType="number"
                 android:textColor="#F4EEEE" />
         </LinearLayout>

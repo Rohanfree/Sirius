@@ -17,10 +17,12 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import in.rohan.sirius.databinding.ActivityMainBinding;
+import in.rohan.sirius.ui.ExcelUtils;
 import in.rohan.sirius.ui.Student;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,22 +95,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void populateStudents() {
         List<Student> students = new ArrayList<>();
-        Student student = null;
-        for (int i = 0; i < 47; i++) {
-            student = new Student();
-            student.setId(i + 1);
-            student.setName("Student" + i);
-            students.add(student);
-        }
-        this.students = students;
+        ExcelUtils.readStudentsFromExcelSheet(new File(getFilesDir(),className+"StudentFile.xls"));
+        this.students = ExcelUtils.getStudents();
+//        File bla=new File(getFilesDir(),"StudentFile.xls");
+//        bla.delete();
 
     }
 
     public void populateStudentsWithStar() {
         populateStudents();
         this.starStudents = new ArrayList<>();
-        this.students.get(0).setStarCount(5);
-        this.starStudents.add(students.get(0));
+        ExcelUtils.readStudentsFromReport(new File(getFilesDir(),className+"StudentFile.xls"),date);
+        this.starStudents = ExcelUtils.getStudents();
     }
 
     public List<Student> getStudents() {
