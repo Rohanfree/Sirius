@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="397dp"
         android:layout_height="114dp"
-        android:background="#3CE32727"
+        android:background="#0097A7"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -23,6 +23,7 @@
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:text="Upload Student Details Here"
+            android:textColor="#F3EFEF"
             android:textIsSelectable="false"
             android:textStyle="bold" />
 
@@ -75,7 +76,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="51dp"
-        android:background="#388E3C"
+        android:background="#787777"
         android:orientation="horizontal">
 
         <EditText
@@ -85,7 +86,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="id"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textColor="#F8F5F5" />
 
         <EditText
             android:id="@+id/editTextNewStudentName"
@@ -107,7 +109,7 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="481dp"
+        android:layout_height="496dp"
         android:layout_marginBottom="50dp">
 
     </ListView>

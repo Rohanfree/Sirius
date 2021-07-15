@@ -22,8 +22,9 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_weight="1"
+                android:background="#0097A7"
                 android:includeFontPadding="false"
                 android:text="Enter Class Name"
                 android:textColor="#F6F3F3"
@@ -33,8 +34,9 @@
             <EditText
                 android:id="@+id/classEditText"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
+                android:background="#787777"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="ClassA" />
@@ -50,8 +52,9 @@
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#0097A7"
                 android:includeFontPadding="false"
                 android:text="Enter star character"
                 android:textColor="#F6F3F3"
@@ -63,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#787777"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
