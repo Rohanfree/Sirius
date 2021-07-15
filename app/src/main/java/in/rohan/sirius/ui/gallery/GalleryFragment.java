@@ -29,6 +29,7 @@ public class GalleryFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
     private FragmentGalleryBinding binding;
+    private MainActivity mainActivity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,11 +40,11 @@ public class GalleryFragment extends Fragment {
         View root = binding.getRoot();
         EditText studentIDEditText= root.findViewById(R.id.studentIDEdittext);
         TextView statusTextView=root.findViewById(R.id.statusTextView);
-
+        mainActivity=((MainActivity)getContext());
         studentIDEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Student student=((MainActivity)getContext()).getStudentWithID(studentIDEditText.getText().toString());
+                Student student=mainActivity.getStudentWithID(studentIDEditText.getText().toString());
                 if(student != null) {
                     statusTextView.setText(student.getName());
                 }else{
@@ -54,7 +55,7 @@ public class GalleryFragment extends Fragment {
         });
         Button addButton=root.findViewById(R.id.addButton);
         EditText starCountEditText= root.findViewById(R.id.starCountEditText);
-        StarListAdapter adapter=new StarListAdapter(getActivity(), ((MainActivity) getContext()).getStarStudents());
+        StarListAdapter adapter=new StarListAdapter(getActivity(), mainActivity.getStarStudents());
 
         ListView list=(ListView) root.findViewById(R.id.starList);
         list.setAdapter(adapter);
@@ -67,12 +68,12 @@ public class GalleryFragment extends Fragment {
 
                 if(!stars.equals("") && !id.equals("")){
 
-                    Student student=((MainActivity)getContext()).getStarStudentWithID(id);
+                    Student student=mainActivity.getStarStudentWithID(id);
                     if(student != null){
                         student.setStarCount(Integer.valueOf(stars));
                         adapter.notifyDataSetChanged();
                     }else {
-                        student=((MainActivity)getContext()).getStudentWithID(id);
+                        student=mainActivity.getStudentWithID(id);
                         if(student != null){
                             student.setStarCount(Integer.valueOf(stars));
                             adapter.add(student);
@@ -86,7 +87,7 @@ public class GalleryFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getContext()).saveStarStudents();
+                mainActivity.saveStarStudents();
             }
         });
         return root;

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ import in.rohan.sirius.ui.Student;
 
 public class StarListAdapter extends ArrayAdapter<Student> {
 
-    private final Activity context;
+    private final MainActivity mainActivity;
 
     public List<Student> getStudents() {
         return studentsWithStar;
@@ -33,7 +32,7 @@ public class StarListAdapter extends ArrayAdapter<Student> {
         super(context, R.layout.mylist,studentsWithStar);
         // TODO Auto-generated constructor stub
 
-        this.context=context;
+        this.mainActivity = (MainActivity) context;
         this.studentsWithStar=studentsWithStar;
 
 
@@ -42,7 +41,7 @@ public class StarListAdapter extends ArrayAdapter<Student> {
 
     public View getView(int position,View view,ViewGroup parent) {
 
-        LayoutInflater inflater=context.getLayoutInflater();
+        LayoutInflater inflater= mainActivity.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.mylist, null,true);
 
         EditText titleText = (EditText) rowView.findViewById(R.id.title);
@@ -54,7 +53,7 @@ public class StarListAdapter extends ArrayAdapter<Student> {
             public void onClick(View v) {
                 ListView listView= (ListView) v.getParent().getParent().getParent();
                 StarListAdapter dataset= (StarListAdapter) listView.getAdapter();
-
+                mainActivity.getStudentWithID(dataset.getStudents().get(position).getId()+"").setStarCount(0);
                 dataset.remove(dataset.getStudents().get(position));
                 dataset.notifyDataSetChanged();
             }

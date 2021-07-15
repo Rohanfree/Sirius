@@ -53,8 +53,9 @@ public class MyListAdapter extends ArrayAdapter<Student> {
                 ListView listView= (ListView) v.getParent().getParent().getParent();
                 MyListAdapter dataset= (MyListAdapter) listView.getAdapter();
 
-                dataset.remove(dataset.getStudents().get(position));
+                dataset.remove(getStudents().get(position));
                 dataset.notifyDataSetChanged();
+
 //                listView.setAdapter(dataset);
 //                listView.deferNotifyDataSetChanged();
 

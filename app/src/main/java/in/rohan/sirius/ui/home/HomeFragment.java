@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment {
     EditText starCharEditText = null;
     CalendarView calenderView = null;
     TextView homeStatus = null;
+    private MainActivity mainActivity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,9 +44,9 @@ public class HomeFragment extends Fragment {
         starCharEditText = root.findViewById(R.id.starCharEditText);
         calenderView = root.findViewById(R.id.calendarView);
         homeStatus = root.findViewById(R.id.homeStatusTextBox);
-        MainActivity mainActivity=((MainActivity) getContext());
+        mainActivity=((MainActivity) getContext());
         initializeDate();
-        mainActivity.populateStudentsWithStar();
+
 
         initialize();
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +73,7 @@ public class HomeFragment extends Fragment {
     }
 
     void initializeDate() {
-        MainActivity mainActivity = ((MainActivity) getContext());
+
         Calendar myCal = Calendar.getInstance();
         StringBuilder dateString = new StringBuilder();
         dateString.append(myCal.get(Calendar.DAY_OF_MONTH));
@@ -81,10 +82,11 @@ public class HomeFragment extends Fragment {
         dateString.append("-");
         dateString.append(myCal.get(Calendar.YEAR));
         mainActivity.date = dateString.toString();
+
     }
 
     void initialize() {
-        MainActivity mainActivity = ((MainActivity) getContext());
+
 
         String className = classEditText.getText().toString();
         String starChar = starCharEditText.getText().toString();
@@ -94,7 +96,7 @@ public class HomeFragment extends Fragment {
         if (!className.equals("")) {
             mainActivity.className = className;
         }
-
+        mainActivity.populateStudentsWithStar();
         homeStatus.setText("Their are " + mainActivity.getStudents().size() + " students, current date of operation is " + mainActivity.date + "" +
                 ". The class currently working is " + mainActivity.className + " and the star character used is " + mainActivity.starChar);
     }

@@ -25,6 +25,7 @@ public class ExcelUtils {
 
 	public static String readStudentsFromExcelSheet(File file) {
 		String error = "";
+		students= new ArrayList<>();
 		try {
 			if (file.exists()) {
 				workBook = new HSSFWorkbook(new FileInputStream(file));
@@ -64,10 +65,12 @@ public class ExcelUtils {
 				workBook = new HSSFWorkbook();
 			}
 			Collections.sort(students);
+			int index=workBook.getSheetIndex("StudentDetails");
+			if(index!= -1){
+				workBook.removeSheetAt(index);
+			}
+			HSSFSheet studentSheet = workBook.createSheet("StudentDetails");
 
-			HSSFSheet studentSheet = (workBook.getSheetIndex("StudentDetails") == -1)
-					? workBook.createSheet("StudentDetails")
-					: workBook.getSheet("StudentDetails");
 			int count = 0;
 			for (Student student : students) {
 				HSSFRow row = studentSheet.createRow(count);
@@ -173,8 +176,8 @@ public class ExcelUtils {
 				return "No record found";
 			}
 			
-			HSSFRow row = studentSheet.getRow(1);
-			if (row == null)
+			HSSFRow row0 = studentSheet.getRow(0);
+			if (row0 == null)
 				return "No record found";
 			
 			int rowNo = 1, count = 1;
@@ -191,7 +194,7 @@ public class ExcelUtils {
 			HSSFCell cell=rown.getCell(count);
 			while(cell!=null) {
 				Student student=new Student();
-				student.setId((int) row.getCell(count).getNumericCellValue());
+				student.setId((int) row0.getCell(count).getNumericCellValue());
 				student.setStarCount((int) cell.getNumericCellValue());
 				students.add(student);
 				count++;

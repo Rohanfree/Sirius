@@ -72,14 +72,6 @@
             android:src="@drawable/refresh" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="433dp"
-        android:layout_marginBottom="50dp">
-
-    </ListView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="51dp"
@@ -111,5 +103,13 @@
             android:layout_weight="1"
             android:text="+" />
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="481dp"
+        android:layout_marginBottom="50dp">
+
+    </ListView>
 
 </LinearLayout>

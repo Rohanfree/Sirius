@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void populateStudents() {
         List<Student> students = new ArrayList<>();
-        ExcelUtils.readStudentsFromExcelSheet(new File(getFilesDir(),className+"StudentFile.xls"));
+        ExcelUtils.readStudentsFromExcelSheet(new File(getFilesDir(),className+"StudentDetails.xls"));
         this.students = ExcelUtils.getStudents();
-//        File bla=new File(getFilesDir(),"StudentFile.xls");
+//        File bla=new File(getFilesDir(),"StudentDetails.xls");
 //        bla.delete();
 
     }
@@ -105,8 +105,16 @@ public class MainActivity extends AppCompatActivity {
     public void populateStudentsWithStar() {
         populateStudents();
         this.starStudents = new ArrayList<>();
-        ExcelUtils.readStudentsFromReport(new File(getFilesDir(),className+"StudentFile.xls"),date);
-        this.starStudents = ExcelUtils.getStudents();
+        ExcelUtils.readStudentsFromReport(new File(getFilesDir(),className+"StudentDetails.xls"),date);
+        for(Student student: ExcelUtils.getStudents()){
+            if(student.getStarCount()!= 0){
+                Student tempstudent=getStudentWithID(student.getId()+"");
+                tempstudent.setStarCount(student.getStarCount());
+                this.starStudents.add(tempstudent);
+            }
+        }
+
+
     }
 
     public List<Student> getStudents() {
@@ -143,6 +151,11 @@ public class MainActivity extends AppCompatActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("label", students.toString());
         clipboard.setPrimaryClip(clip);
+        for(Student student : getStarStudents()){
+            getStudentWithID(student.getId()+"").setStarCount(student.getStarCount());
+        }
+        ExcelUtils.setStudents(this.students);
+        ExcelUtils.writeStudentsToReport(new File(getFilesDir(),className+"StudentDetails.xls"),date);
 
     }
 }
