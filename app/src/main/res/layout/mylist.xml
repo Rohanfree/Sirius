@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="294dp"
+        android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
@@ -43,8 +43,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="108dp"
+        android:layout_width="42dp"
         android:layout_height="37dp"
+        android:gravity="right"
         android:orientation="vertical">
 
         <Button
