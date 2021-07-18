@@ -1,6 +1,5 @@
 package in.rohan.sirius.ui.slideshow;
 
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +29,6 @@ import in.rohan.sirius.MainActivity;
 import in.rohan.sirius.R;
 import in.rohan.sirius.databinding.FragmentSlideshowBinding;
 import in.rohan.sirius.ui.CustomListView.MyListAdapter;
-import in.rohan.sirius.ui.CustomListView.StarListAdapter;
 import in.rohan.sirius.ui.ExcelUtils;
 import in.rohan.sirius.ui.Student;
 
@@ -53,8 +51,8 @@ public class SlideshowFragment extends Fragment {
         MyListAdapter adapter = new MyListAdapter(getActivity(), mainActivity.getStudents());
         ListView list = (ListView) root.findViewById(R.id.list);
         list.setAdapter(adapter);
-        ImageButton imgButtonReload = root.findViewById(R.id.reloadButton);
-        ImageButton uploadButton = root.findViewById(R.id.uploadButton);
+        Button imgButtonReload = root.findViewById(R.id.reloadButton);
+        Button uploadButton = root.findViewById(R.id.fileUpload);
 
         ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 new ActivityResultCallback<Uri>() {
@@ -86,7 +84,7 @@ public class SlideshowFragment extends Fragment {
             }
         });
 
-        ImageButton downloadButton = root.findViewById(R.id.downloadButton);
+        Button downloadButton = root.findViewById(R.id.fileDownloadButton);
 
         ActivityResultLauncher<String> cContent = registerForActivityResult(new ActivityResultContracts.CreateDocument(),
                 new ActivityResultCallback<Uri>() {
@@ -147,7 +145,7 @@ public class SlideshowFragment extends Fragment {
 
              }
         });
-        ImageButton imgButtonSave=root.findViewById(R.id.saveButton);
+        Button imgButtonSave=root.findViewById(R.id.saveButton);
         imgButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

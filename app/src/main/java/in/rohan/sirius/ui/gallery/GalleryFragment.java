@@ -1,10 +1,14 @@
 package in.rohan.sirius.ui.gallery;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,6 +34,7 @@ public class GalleryFragment extends Fragment {
     private GalleryViewModel galleryViewModel;
     private FragmentGalleryBinding binding;
     private MainActivity mainActivity;
+    private Button saveButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class GalleryFragment extends Fragment {
         EditText studentIDEditText= root.findViewById(R.id.studentIDEdittext);
         TextView statusTextView=root.findViewById(R.id.statusTextView);
         mainActivity=((MainActivity)getContext());
+        EditText starCountEditText= root.findViewById(R.id.starCountEditText);
         studentIDEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -53,8 +59,33 @@ public class GalleryFragment extends Fragment {
                 return false;
             }
         });
+        studentIDEditText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    starCountEditText.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
         Button addButton=root.findViewById(R.id.addButton);
-        EditText starCountEditText= root.findViewById(R.id.starCountEditText);
+        starCountEditText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    studentIDEditText.requestFocus();
+                    addButton.callOnClick();
+                    studentIDEditText.setText("");
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+
         StarListAdapter adapter=new StarListAdapter(getActivity(), mainActivity.getStarStudents());
 
         ListView list=(ListView) root.findViewById(R.id.starList);
@@ -83,7 +114,7 @@ public class GalleryFragment extends Fragment {
                 }
             }
         });
-        Button saveButton=root.findViewById(R.id.starSaveButton);
+        saveButton=root.findViewById(R.id.starSaveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +127,7 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        saveButton.callOnClick();
         binding = null;
     }
 }

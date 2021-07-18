@@ -45,6 +45,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Enter id"
+                android:imeOptions="normal"
                 android:inputType="number"
                 android:textColor="#F4EEEE" />
         </LinearLayout>
@@ -116,6 +117,7 @@
     <ListView
         android:id="@+id/starList"
         android:layout_width="match_parent"
-        android:layout_height="504dp" />
+        android:layout_height="match_parent"
+        android:padding="20dp" />
 
 </LinearLayout>

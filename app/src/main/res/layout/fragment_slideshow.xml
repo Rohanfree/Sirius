@@ -9,8 +9,8 @@
     tools:context=".ui.slideshow.SlideshowFragment">
 
     <LinearLayout
-        android:layout_width="397dp"
-        android:layout_height="114dp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
         android:background="#0097A7"
         android:gravity="center"
         android:orientation="horizontal">
@@ -27,22 +27,21 @@
             android:textIsSelectable="false"
             android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/downloadButton"
-            android:layout_width="42dp"
-            android:layout_height="63dp"
+        <Button
+            android:id="@+id/fileUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
             android:layout_weight="1"
-            android:background="#00B64545"
-            android:src="@drawable/download_button" />
+            android:text="Upload" />
 
-        <ImageButton
-            android:id="@+id/uploadButton"
-            android:layout_width="35dp"
+        <Button
+            android:id="@+id/fileDownloadButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#007B1FA2"
-            android:clickable="true"
-            android:src="@drawable/folder__1_" />
+            android:text="Download" />
 
     </LinearLayout>
 
@@ -52,25 +51,22 @@
         android:gravity="right|end"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/saveButton"
-            android:layout_width="259dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
             android:layout_weight="1"
-            android:background="#005C3E3E"
-            android:clickable="true"
-            android:longClickable="true"
-            android:paddingRight="30dp"
-            android:scaleType="fitEnd"
-            android:src="@drawable/save" />
+            android:text="Save" />
 
-        <ImageButton
+        <Button
             android:id="@+id/reloadButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#005C3E3E"
-            android:src="@drawable/refresh" />
+            android:text="Reload" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -109,8 +105,9 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="496dp"
-        android:layout_marginBottom="50dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:padding="20dp">
 
     </ListView>
 

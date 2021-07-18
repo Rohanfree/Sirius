@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,10 +41,10 @@ public class MyListAdapter extends ArrayAdapter<Student> {
         LayoutInflater inflater=context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.mylist, null,true);
 
-        EditText titleText = (EditText) rowView.findViewById(R.id.title);
+        TextView titleText = (TextView) rowView.findViewById(R.id.title);
 
         TextView subtitleText = (TextView) rowView.findViewById(R.id.subtitle);
-        ImageButton imb= (ImageButton) rowView.findViewById(R.id.imageButton3);
+        Button imb= (Button) rowView.findViewById(R.id.deleteButton);
         imb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
